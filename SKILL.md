@@ -33,6 +33,112 @@ When the user does not specify a style, use a premium enterprise SaaS look with:
 - Clean cards, layouts, and sections
 - High contrast and excellent readability
 
+## Resource Library — Mandatory Usage
+
+This repository contains a resource library. The files are not optional reference material: use them as the implementation standards for this skill.
+
+Before designing, coding, redesigning, auditing, or reviewing a UI, determine which resource files apply and consult them. Do not blindly read every file for every request; use the relevant resources based on the task.
+
+### Always apply
+
+For every UI/frontend task, use:
+
+- `resources/design-system.md`
+- `resources/design-tokens.md`
+- `resources/typography.md`
+- `resources/spacing.md`
+- `resources/colors.md`
+- `resources/accessibility.md`
+- `resources/performance.md`
+- `resources/component-library.md`
+- `resources/visual-hierarchy.md`
+- `resources/visual-effects.md`
+- `resources/motion.md`
+- `resources/content-design.md`
+- `resources/quality-gates.md`
+
+### Technology-specific resources
+
+Use these when the task involves the corresponding technology:
+
+- `resources/nextjs.md` — Next.js projects
+- `resources/react.md` — React projects
+- `resources/tailwind.md` — Tailwind CSS projects
+
+### Page/pattern resources
+
+Use the matching resources when the request involves these patterns:
+
+- `resources/landing-page.md` — landing/marketing pages
+- `resources/dashboard.md` — dashboards/admin/analytics
+- `resources/forms.md` — forms/data entry/authentication/settings forms
+- `resources/tables.md` — data tables/operations lists
+
+### SEO and public-page work
+
+For public/indexable pages, also apply:
+
+- `resources/seo.md`
+- `checklists/seo.md`
+
+### Review and QA resources
+
+When reviewing, auditing, or preparing code for delivery, apply:
+
+- `checklists/design-review.md`
+- `checklists/frontend-review.md`
+- `checklists/lighthouse.md`
+- `checklists/accessibility.md`
+- `checklists/seo.md` when applicable
+- `checklists/ship-ready.md`
+
+### Example references
+
+Use the relevant example when implementing a common page or interaction:
+
+- `examples/landing-page.md`
+- `examples/dashboard.md`
+- `examples/hero.md`
+- `examples/pricing-page.md`
+- `examples/settings.md`
+- `examples/auth.md`
+- `examples/onboarding.md`
+- `examples/forms.md`
+- `examples/tables.md`
+- `examples/charts.md`
+- `examples/mobile.md`
+
+Examples are patterns, not templates. Adapt them to the product, existing codebase, content, and design system.
+
+### Prompt references
+
+Use the appropriate prompt as an internal workflow when the user asks for:
+
+- `prompts/redesign.md` — redesign an existing UI
+- `prompts/landing-page.md` — create a landing page
+- `prompts/dashboard.md` — create a dashboard
+- `prompts/hero.md` — create a hero
+- `prompts/admin-panel.md` — create an admin panel
+- `prompts/mobile.md` — design/review mobile UI
+- `prompts/marketing.md` — marketing UI/content
+- `prompts/audit.md` — audit an existing interface
+
+Do not expose or mechanically paste these prompts to the user unless requested. Use them to structure your internal implementation approach.
+
+## Resource Selection Workflow
+
+For each task:
+
+1. Identify the task type: new UI, redesign, frontend implementation, audit, optimization, SEO, accessibility, or mixed.
+2. Inspect the existing project and design system before creating new patterns.
+3. Select the relevant resources from the library above.
+4. Apply their rules while designing and coding.
+5. Use the matching examples/prompts when they improve consistency.
+6. Run the relevant checklists before considering the task complete.
+7. Resolve important issues instead of merely reporting them.
+
+Never claim that a resource was applied if it was not actually considered.
+
 ## Mandatory Quality Validation
 
 Before returning any design or code, perform an internal quality review. If the answer to any item is no, improve the solution before responding.
@@ -91,7 +197,7 @@ Typography is a core part of the design.
 
 Spacing must feel deliberate and consistent.
 
-- Follow an 8px-based spacing system.
+- Follow an 8px-based spacing system unless the existing project uses another established scale.
 - Keep spacing rhythmically consistent across the app.
 - Use whitespace to separate meaning, not just to fill empty space.
 - Maintain visual balance in cards, sections, forms, and layouts.
@@ -116,6 +222,7 @@ Motion should enhance UX, not distract.
 - Avoid heavy motion that harms readability or performance.
 - Make hover and focus states feel refined.
 - Use subtle stagger, easing, and entry transitions when helpful.
+- Respect reduced-motion preferences.
 
 ## Layout Standards
 
@@ -205,6 +312,8 @@ The generated code should be performance-friendly and should aim for excellent C
 - Are dependencies minimal?
 - Is layout stable?
 - Will Lighthouse likely score well?
+
+Do not claim a Lighthouse score unless it has actually been measured.
 
 ## SEO Standards
 
@@ -327,10 +436,12 @@ If any answer is not strong enough, refine the result before replying.
 
 When the user asks for UI, UX, product design, frontend code, or redesign work:
 1. Think in terms of premium product quality.
-2. Improve the design beyond the bare minimum.
-3. Make the result attractive, modern, and polished.
-4. Favor performance-friendly and SEO-friendly implementation.
-5. Return production-ready code or clear design guidance.
+2. Inspect and apply the relevant repository resources before implementation.
+3. Improve the design beyond the bare minimum.
+4. Make the result attractive, modern, and polished.
+5. Favor performance-friendly and SEO-friendly implementation.
+6. Run the relevant review checklist before declaring the work complete.
+7. Return production-ready code or clear design guidance.
 
 ## Final Standard
 
