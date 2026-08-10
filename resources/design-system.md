@@ -2,88 +2,138 @@
 
 ## Purpose
 
-Use this document as the reference for creating cohesive, premium interfaces. A design system is not a collection of decoration; it is a repeatable set of decisions that makes an entire product feel intentional.
+A design system creates a shared visual and interaction language across the product. It should make the interface more consistent, faster to build, easier to maintain, more accessible, and easier to improve.
 
-## 1. Design System First
+## Core Principle
 
-Before implementing a substantial UI, identify:
+Prefer a small, coherent system over a huge collection of arbitrary tokens and one-off components.
 
-- Primary user goal
-- Information hierarchy
-- Page structure
-- Layout primitives
-- Typography hierarchy
-- Color roles
-- Spacing scale
-- Component variants
-- Interaction states
-- Responsive behavior
-- Accessibility requirements
+Before creating a new visual rule, check whether an existing token or component already solves the problem.
 
-Do not invent each component independently. Reuse the same visual language throughout the product.
+## Design Tokens
 
-## 2. Design Tokens
+Centralize recurring values for:
 
-Prefer semantic tokens over arbitrary values.
+- Colors
+- Typography
+- Spacing
+- Radius
+- Shadows
+- Motion
+- Breakpoints
+- Elevation/z-index where needed
 
-Recommended token categories:
+Prefer semantic tokens over raw implementation values.
 
-- Background
-- Surface
-- Surface elevated
-- Foreground
-- Muted foreground
-- Border
-- Primary
-- Primary foreground
-- Secondary
+Examples:
+
+- `background`
+- `foreground`
+- `muted`
+- `primary`
+- `primary-foreground`
+- `border`
+- `success`
+- `warning`
+- `destructive`
+- `focus-ring`
+
+## Color System
+
+Build a semantic palette rather than scattering raw colors throughout the UI.
+
+Support roles for:
+
+- Background surfaces
+- Foreground/text hierarchy
+- Borders
+- Primary actions
+- Secondary actions
 - Success
 - Warning
-- Destructive
-- Focus ring
-- Radius
-- Shadow
-- Spacing
-- Typography
+- Error/destructive
+- Informational states
 
-Semantic naming is preferred over names such as `blue-500` when the value represents a product role.
+Reserve strong accent colors for meaningful actions and states.
 
-## 3. Layout System
+Do not use accent colors everywhere simply to make the interface look more colorful.
 
-Use a predictable layout grid.
+## Typography System
 
-Recommended principles:
+Define a predictable hierarchy:
 
-- Use a consistent content container.
-- Align major sections to the same grid.
-- Use predictable horizontal gutters.
-- Avoid arbitrary widths that break at intermediate sizes.
-- Keep reading content at comfortable line lengths.
-- Use full-width sections intentionally.
-- Let visual hierarchy determine vertical rhythm.
+- Display
+- H1
+- H2
+- H3
+- Body large
+- Body
+- Body small
+- Label
+- Caption
 
-Typical container strategy:
+Typography should scale intentionally across breakpoints.
 
-- Mobile: fluid with comfortable edge padding
-- Tablet: fluid with larger gutters
-- Desktop: centered max-width container
-- Wide desktop: preserve readable content width rather than stretching everything
+Avoid creating a separate font size for every component.
 
-## 4. Spacing
+## Spacing System
 
-Use an 8px-based scale by default.
+Use a consistent spacing scale.
 
-Suggested values:
+A practical default can include:
 
 `4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128`
 
-Use smaller values for tightly related elements and larger values between conceptual sections.
+Use spacing to communicate relationships:
 
-Do not use spacing merely because a design tool makes it easy. Spacing should communicate relationships.
+- Tight → strongly related
+- Medium → grouped
+- Large → separate sections
 
-## 5. Surface Hierarchy
+Do not use arbitrary spacing to compensate for weak layout structure.
 
-Create hierarchy through a restrained combination of:
+## Layout System
+
+Define reusable layout primitives such as:
+
+- Container
+- Stack
+- Grid
+- Section
+- Page header
+- Sidebar shell
+
+Prefer predictable max-widths and gutters.
+
+Avoid arbitrary widths that break at intermediate viewport sizes.
+
+## Radius System
+
+Define a small set of radii.
+
+Example hierarchy:
+
+- Small controls
+- Inputs/buttons
+- Cards
+- Large surfaces
+- Full pills
+
+Equivalent component types should share equivalent radii.
+
+## Elevation and Shadows
+
+Create a restrained elevation hierarchy:
+
+```text
+Base → Raised → Floating → Overlay
+```
+
+Use subtle shadows for depth. Avoid heavy shadows on every component.
+
+## Surface Hierarchy
+
+Create hierarchy through a controlled combination of:
 
 - Background changes
 - Borders
@@ -92,56 +142,11 @@ Create hierarchy through a restrained combination of:
 - Spacing
 - Accent color
 
-Avoid placing heavy shadows on every card. A premium interface often uses subtle borders and tonal separation instead.
+Premium interfaces often benefit from subtle tonal separation instead of excessive decoration.
 
-## 6. Border Radius
+## Component States
 
-Use a limited radius vocabulary.
-
-Example roles:
-
-- Small: controls, badges, compact elements
-- Medium: inputs, buttons, cards
-- Large: major panels and feature surfaces
-- Pill: status chips and intentionally pill-shaped controls
-
-Do not round every element excessively. Radius should reinforce component hierarchy.
-
-## 7. Shadows
-
-Use shadows sparingly.
-
-Preferred hierarchy:
-
-- No shadow for flat surfaces
-- Very subtle shadow for raised cards
-- Medium shadow for menus and popovers
-- Stronger shadow only for dialogs or floating surfaces
-
-Avoid dramatic shadows that make enterprise UI look inexpensive.
-
-## 8. Color Roles
-
-Define colors by purpose.
-
-Primary accent should be used for:
-
-- Primary actions
-- Selected navigation
-- Important links
-- Key highlights
-
-Success should communicate completed or healthy states.
-
-Warning should communicate attention without implying failure.
-
-Destructive should communicate irreversible or dangerous actions.
-
-Muted colors should reduce emphasis, not reduce readability below accessible contrast.
-
-## 9. Component States
-
-Interactive components should account for:
+Every interactive component should consider:
 
 - Default
 - Hover
@@ -152,114 +157,122 @@ Interactive components should account for:
 - Loading
 - Success
 - Error
-- Empty
+- Empty where applicable
 
-Do not rely only on color to communicate state.
+States should be visually and semantically consistent across the product.
 
-## 10. Buttons
+## Buttons
 
-Button hierarchy should be obvious.
+Define a controlled button system.
 
-Typical hierarchy:
+Common variants:
 
-1. Primary action
-2. Secondary action
-3. Tertiary/ghost action
-4. Destructive action
+- Primary
+- Secondary
+- Outline
+- Ghost
+- Destructive
+- Link
 
-Keep labels concise and action-oriented.
+Also define:
 
-Buttons need visible keyboard focus and should provide clear disabled/loading feedback.
+- Sizes
+- Icon behavior
+- Loading state
+- Disabled state
+- Focus behavior
 
-## 11. Forms
+Do not create custom button styles for every page.
+
+## Inputs
+
+Inputs should share:
+
+- Height system
+- Border treatment
+- Radius
+- Typography
+- Focus ring
+- Error treatment
+- Disabled treatment
+
+Different input types should still feel like members of the same component family.
+
+## Forms
 
 Forms should use consistent:
 
 - Label placement
-- Input height
-- Border treatment
-- Focus ring
-- Error messaging
+- Input sizing
 - Helper text
-- Required-field treatment
-- Button placement
+- Validation
+- Error messaging
+- Required/optional treatment
+- Action placement
 
-Avoid unnecessary fields. Group related information and make validation understandable.
+Keep form patterns reusable and accessible.
 
-## 12. Navigation
+## Cards
+
+Cards should group meaningful information or actions.
+
+Define consistent:
+
+- Padding
+- Radius
+- Border
+- Surface
+- Header/content/footer structure
+
+Do not turn every section into a card.
+
+## Tables
+
+Tables should share predictable:
+
+- Header treatment
+- Row height
+- Alignment
+- Status styles
+- Action patterns
+- Selection behavior
+- Loading/empty/error states
+
+Large datasets should use appropriate pagination or virtualization.
+
+## Feedback Components
+
+Standardize:
+
+- Toasts
+- Alerts
+- Banners
+- Empty states
+- Loading states
+- Error states
+- Success states
+
+Users should not encounter unrelated feedback patterns across different screens.
+
+## Navigation
 
 Navigation should communicate where the user is and what they can do.
 
-For dashboards:
+Use:
 
-- Keep primary navigation stable.
-- Highlight the current location clearly.
-- Group related destinations.
-- Avoid excessive nesting.
-- Preserve important actions where users expect them.
+- Stable primary navigation
+- Clear active states
+- Logical grouping
+- Predictable labels
+- Search when navigation becomes large
 
-## 13. Cards
+Avoid excessive nesting.
 
-Cards should have a purpose.
+## Responsive System
 
-A card should group information or actions that belong together. Do not turn every piece of content into a card.
+Breakpoints should be based on layout needs rather than specific device models.
 
-Premium cards usually rely on:
-
-- Strong internal hierarchy
-- Consistent padding
-- Subtle border or surface contrast
-- Clear title and supporting content
-- Purposeful actions
-
-## 14. Tables
-
-Tables should optimize scanning.
-
-- Align numeric values consistently.
-- Keep headers visually distinct.
-- Use adequate row height.
-- Avoid excessive borders.
-- Make row actions predictable.
-- Keep important columns visible on smaller screens.
-- Use pagination or virtualization for large data sets.
-
-## 15. Empty States
-
-An empty state should explain:
-
-1. What is empty.
-2. Why it matters.
-3. What the user can do next.
-
-Use a clear action when one exists. Avoid decorative illustrations that do not help the user proceed.
-
-## 16. Loading States
-
-Prefer skeletons when the structure is known and stable.
-
-Use spinners for short, localized operations.
-
-Avoid blocking the entire application for small requests.
-
-Loading states should prevent layout shifts where practical.
-
-## 17. Error States
-
-Errors should be:
-
-- Clear
-- Specific
-- Actionable
-- Calmly presented
-
-Explain what happened and what the user can do next. Preserve user input when possible.
-
-## 18. Responsive Design
-
-Design mobile behavior intentionally rather than simply shrinking desktop layouts.
-
-At each breakpoint evaluate:
+At every breakpoint evaluate:
 
 - Navigation
 - Content order
@@ -269,32 +282,106 @@ At each breakpoint evaluate:
 - Button placement
 - Typography
 - Spacing
-- Touch target size
+- Touch targets
 
-## 19. Accessibility Integration
+Do not simply shrink desktop UI.
 
-Accessibility belongs inside the design system, not as a final patch.
+## Motion System
 
-Every interactive component should have:
+Define a small motion vocabulary for:
 
-- Keyboard behavior
-- Visible focus
-- Accessible name
-- Appropriate semantic element
-- Adequate contrast
-- Clear state communication
+- State changes
+- Navigation feedback
+- Progressive disclosure
+- Focus/attention
 
-## 20. Premium Quality Test
+Use motion consistently and respect `prefers-reduced-motion`.
 
-Before considering a component complete, ask:
+Avoid making every component animate differently.
 
-- Is this visually premium?
-- Is the hierarchy immediately understandable?
+## Accessibility
+
+Accessibility is part of the design system, not a final QA step.
+
+Define expectations for:
+
+- Semantic HTML
+- Keyboard navigation
+- Focus visibility
+- Accessible names
+- Contrast
+- Touch targets
+- Reduced motion
+- State communication
+
+## Dark Mode
+
+If supported, create semantic tokens for both themes.
+
+Do not simply invert colors.
+
+Review:
+
+- Surface hierarchy
+- Text contrast
+- Borders
+- Status colors
+- Focus rings
+- Images
+- Shadows
+
+## Implementation Rules
+
+When working in an existing codebase:
+
+1. Inspect existing tokens and components.
+2. Reuse them where appropriate.
+3. Extend the system only when a real repeated need exists.
+4. Avoid breaking established patterns without a reason.
+5. Keep design and implementation terminology aligned.
+6. Avoid unnecessary global CSS changes.
+
+## Performance
+
+A design system should encourage efficient implementation.
+
+Prefer:
+
+- Lightweight primitives
+- Server-compatible components where possible
+- Isolated client behavior
+- Optimized assets
+- Minimal unnecessary JavaScript
+- Reusable components instead of duplicated implementations
+
+Do not add heavy dependencies merely for a small visual effect.
+
+## Documentation
+
+Document meaningful system decisions.
+
+For important components, document:
+
+- Purpose
+- Variants
+- Usage
+- States
+- Accessibility requirements
+- Important constraints
+
+## Quality Review
+
+Ask:
+
+- Is the UI consistent?
 - Can spacing be improved?
 - Can typography be improved?
-- Is the component reusable?
-- Are all states handled?
-- Is the component accessible?
-- Does it work responsively?
-- Does it feel consistent with the rest of the product?
+- Are colors semantic?
+- Are components reusable?
+- Are component states complete?
+- Is accessibility built into the system?
+- Does the system support responsive layouts?
+- Does it encourage performant implementations?
+- Does it support a premium visual language without excessive decoration?
+- Is the system simple enough for developers to use correctly?
 - Is this something I'd be proud to ship?
